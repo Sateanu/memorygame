@@ -27,14 +27,34 @@ function handler(e) {
 
     }
 }
+
+var pict={
+    0 : 'pict0.png',
+    1 : 'pict1.png',
+    2 : 'pict2.png',
+}
+var nivele={
+    0 : {
+        x: 4,
+        y: 5,
+    },
+    1 : {
+        x: 5,
+        y: 6,
+    },
+}
+
 var first = null;
 var second = null;
 var gamepanel = document.getElementById('gamebody');
+ 
 gamepanel.addEventListener('click', handler, false);
 
-function createTable(noPairs) {
+function createTable(level) {
     
-    noPairs=parseInt(noPairs);
+    if(nivele[level]==null)
+        return 0;
+    
     var table=document.getElementById('cardtable');
     if(table==null){ 
         table = document.createElement("table");
@@ -45,13 +65,10 @@ function createTable(noPairs) {
         table.innerHTML="";
     
 
-    var cards = noPairs * 2;
-    var tc = cards;
-    var x = cards;
-    while (x % 2 == 0)
-        var x = x / 2;
-        
-    var y = cards / x;
+    
+    var x = nivele[level].x;
+    var y = nivele[level].y;
+    var cards=x*y;
     
     for (i = 0; i < x; i++) {
             var row=document.createElement('tr');
@@ -64,7 +81,8 @@ function createTable(noPairs) {
             //TO-DO: IMPROVE GENERATION
             card.valoare=Math.floor(Math.random()*10);
             //TO-DO: REMOVE INNER HTML AND ADD A IMG BASED ON VALOARE
-            card.innerHTML=card.valoare;
+            card.innerHTML= card.valoare;
+            
             td.appendChild(card);
         }
         table.appendChild(row);
@@ -76,3 +94,6 @@ function playGame() {
     var p=document.getElementById('pair');
     createTable(parseInt(p.value));
 }
+document.onload(function(){
+    
+});
