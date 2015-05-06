@@ -90,12 +90,12 @@ function createTable(level) {
 }
 
 window.onload = (function () {
-    
-    var menu=document.getElementById('menu');
+
+    var menu = document.getElementById('menu');
     for (var i = 0; i < nivele.length; i++) {
         var b = document.createElement('input');
         b.type = 'button';
-        b.value = i + 1;
+        b.value = 'Level ' + (i + 1);
         b.level = i;
         b.onclick = (function () {
             createTable(this.level);
