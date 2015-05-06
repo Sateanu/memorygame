@@ -34,7 +34,6 @@ gamepanel.addEventListener('click', handler, false);
 
 function createTable(noPairs) {
     
-    alert("Creezi tabel cu "+noPairs+" perechi!");
     noPairs=parseInt(noPairs);
     var table=document.getElementById('cardtable');
     if(table==null){ 
@@ -71,4 +70,9 @@ function createTable(noPairs) {
         table.appendChild(row);
     }
     return 0;
+}
+
+function playGame() {
+    var p=document.getElementById('pair');
+    createTable(parseInt(p.value));
 }
