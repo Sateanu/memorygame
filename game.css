@@ -11,14 +11,17 @@
 }
 .card
 {
+    background-image: url('images/black.png');
     font-size:25px;
     border: 1px solid black;
 }
 .selected
 {
+    background-image: url('images/white.png');
     color:brown;
 }
 .used
 {
     color:green;
+    opacity: 0.2;    
 }
