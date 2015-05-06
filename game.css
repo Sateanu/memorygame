@@ -5,6 +5,12 @@
     margin-right: auto;
     width: 70%;
 }
+#menu
+{
+    margin-left:auto;
+    margin-right: auto;
+    width:50%;
+}
 #cardtable {
     margin-left: auto;
     margin-right: auto;
@@ -14,6 +20,10 @@
     background-image: url('images/black.png');
     font-size:25px;
     border: 1px solid black;
+    width: 2em;
+    height: 2em;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
 }
 .selected
 {
