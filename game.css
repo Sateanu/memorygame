@@ -22,7 +22,7 @@
 }
 .card
 {
-    font-family: 'Comic Sans MS';
+    font-family: 'Helvetica';
     /*background-image: url('images/black.png');*/
     display: table-cell;
     background: gray;

@@ -33,7 +33,7 @@ function winGame() {
         clearInterval(movingWin.interval);
         document.body.removeChild(movingWin);
         winGame();
-    }, window.innerWidth * 5, movingWin);
+    }, 5000, movingWin);
     //alert('YOU WON!\nDin ' + incercari + " incercari cu o sansa de " + (incercariCorecte * 100 / incercari).toFixed(2) + "% !");
 }
 function handler(e) {
