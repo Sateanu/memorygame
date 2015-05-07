@@ -1,3 +1,4 @@
+/* global winGame */
 Array.prototype.shuffle = function () {
     var temp, j, i;
     for (temp, j, i = this.length; i;) {
@@ -7,7 +8,34 @@ Array.prototype.shuffle = function () {
         this[j] = temp;
     }
 }
-
+function winGame() {
+    var movingWin = document.createElement('div');
+    movingWin.style.position = 'fixed';
+    movingWin.style.top = Math.floor(Math.random() * 80) + "%";
+    movingWin.style.overflow = 'hidden';
+    movingWin.style.display = 'block';
+    movingWin.style.background = "black";
+    movingWin.style.color = 'white';
+    movingWin.X = 0;
+    movingWin.style.marginLeft = movingWin.X + "px";
+    var winString = 'YOU WON!\nDin ' + incercari + " incercari cu o sansa de " + (incercariCorecte * 100 / incercari).toFixed(2) + "% !";
+    movingWin.innerHTML = winString;
+    movingWin.lastFrame = +new Date;
+    document.body.appendChild(movingWin);
+    movingWin.interval = setInterval(function (movingWin) {
+        var now = +new Date;
+        var delta = now - movingWin.lastFrame;
+        movingWin.X += 2 * delta / 16;
+        movingWin.style.marginLeft = movingWin.X + "px";
+        movingWin.lastFrame = now;
+    }, 16, movingWin);
+    setTimeout(function (movingWin) {
+        clearInterval(movingWin.interval);
+        document.body.removeChild(movingWin);
+        winGame();
+    }, window.innerWidth * 5, movingWin);
+    //alert('YOU WON!\nDin ' + incercari + " incercari cu o sansa de " + (incercariCorecte * 100 / incercari).toFixed(2) + "% !");
+}
 function handler(e) {
     e = e || window.event;
     var target = e.target;
@@ -16,16 +44,34 @@ function handler(e) {
             first = target;
             //first.valoare = target.innerHTML;
             first.className = "card selected";
+            if (checkBox.checked) {
+                document.getElementById('dank_hit').play();
+            }
         }
         else if (second == null && first != target) {
             second = target;
+            incercari++;
+            if (checkBox.checked) {
+                document.getElementById('dank_hit').play();
+            }
             //second.valoare = target.innerHTML;
             second.className = "card selected";
             if (first.valoare == second.valoare) {
+                if (checkBox.checked) {
+                    document.getElementById('dank_score').play();
+                }
+                incercariCorecte++;
                 first.className = "card used";
                 second.className = "card used";
                 first = null;
                 second = null;
+                perechiramase--;
+                if (perechiramase == 0) {
+                    if (checkBox.checked) {
+                        document.getElementById('dank_win').play();
+                    }
+                    winGame();
+                }
             }
             else {
                 setTimeout(function () {
@@ -33,7 +79,9 @@ function handler(e) {
                     second.className = "card";
                     first = null;
                     second = null;
-
+                    if (checkBox.checked) {
+                        document.getElementById('dank_miss').play();
+                    }
                 }, 500);
 
             }
@@ -57,15 +105,19 @@ var nivele = [
     { x: 9, y: 9 },
     { x: 10, y: 10 },
 ];
-
+var incercari = 0;
+var incercariCorecte = 0;
 var first = null;
 var second = null;
 var gamepanel = document.getElementById('gamebody');
-
+var perechiramase = 0;
+var checkBox = null;
 gamepanel.addEventListener('click', handler, false);
 
 function createTable(level) {
 
+    incercari = 0;
+    incercariCorecte = 0;
     if (nivele[level] == null)
         return 0;
 
@@ -83,7 +135,7 @@ function createTable(level) {
     var y = nivele[level].y;
     var cards = x * y;
     var cardValors = Array();
-
+    perechiramase = x * y / 2;
     for (var i = 0; i < cards / 2; i++) {
         cardValors.push(i);
         cardValors.push(i);
@@ -99,14 +151,19 @@ function createTable(level) {
             var td = document.createElement('td');
             row.appendChild(td);
             var card = document.createElement('div');
-            card.className = "card"
+            card.className = "card";
+            var cardContainer = document.createElement('div');
+            cardContainer.setAttribute("style", "webkit-transform=rotateY(-180deg)");
+            cardContainer.style.transform = "rotateY(-180deg)";
+            
+            
             //TO-DO: IMPROVE GENERATION
             card.valoare = cardValors[i * y + j];
             
             //TO-DO: REMOVE INNER HTML AND ADD A IMG BASED ON VALOARE
             card.innerHTML = card.valoare;
-
-            td.appendChild(card);
+            cardContainer.appendChild(card);
+            td.appendChild(cardContainer);
         }
         table.appendChild(row);
     }
@@ -125,5 +182,16 @@ window.onload = (function () {
             createTable(this.level);
         });
         menu.appendChild(b);
+    }
+    if (checkBox == null) {
+        var label = document.createElement('label');
+        label.innerHTML = "DANK SOUNDS";
+
+        checkBox = document.createElement('input');
+        checkBox.type = 'checkbox';
+        label.appendChild(checkBox);
+        menu.appendChild(label);
+
+
     }
 });

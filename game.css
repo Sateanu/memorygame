@@ -1,6 +1,7 @@
 #gamebody
 {
-    background-color: antiquewhite;
+    background-color: white;
+    display: block;
     margin-left: auto;
     margin-right: auto;
     width: 70%;
@@ -11,9 +12,9 @@
 }
 #menu
 {
-    margin-left:auto;
-    margin-right: auto;
-    width:50%;
+    position: fixed;
+    width: 100px;
+    
 }
 #cardtable {
     margin-left: auto;
@@ -21,21 +22,35 @@
 }
 .card
 {
-    background-image: url('images/black.png');
+    font-family: 'Comic Sans MS';
+    /*background-image: url('images/black.png');*/
+    display: table-cell;
+    background: gray;
     font-size:25px;
-    border: 1px solid black;
     width: 2em;
     height: 2em;
-    -webkit-transition: all 0.15s linear;
+    
     transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    text-align: center;
+    vertical-align: middle;
+    color:rgba(0,0,0,0);
+    border: 2px solid black;
 }
 .selected
 {
-    background-image: url('images/white.png');
-    color:brown;
+    /*background-image: url('images/white.png');*/
+    color:black;
+    background: white;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 .used
 {
     color:green;
-    opacity: 0.2;    
+    opacity: 0.4;    
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
