@@ -1,3 +1,13 @@
+Array.prototype.shuffle = function () {
+    var temp, j, i;
+    for (temp, j, i = this.length; i;) {
+        j = Math.floor(Math.random() * i);
+        temp = this[--i];
+        this[i] = this[j];
+        this[j] = temp;
+    }
+}
+
 function handler(e) {
     e = e || window.event;
     var target = e.target;
@@ -34,6 +44,7 @@ var pict = {
     2: 'pict2.png',
 }
 var nivele = [
+    { x: 2, y: 3 },
     { x: 4, y: 5 },
     { x: 5, y: 6 },
     { x: 6, y: 6 },
@@ -64,13 +75,22 @@ function createTable(level) {
         table.innerHTML = "";
 
 
-
     var x = nivele[level].x;
     var y = nivele[level].y;
     var cards = x * y;
+    var cardValors = Array();
+
+    for (var i = 0; i < cards / 2; i++) {
+        cardValors.push(i);
+        cardValors.push(i);
+    }
+    alert(cardValors);
+    cardValors.shuffle();
+    alert(cardValors);
 
     for (var i = 0; i < x; i++) {
         var row = document.createElement('tr');
+        
         table.appendChild(row);
         for (var j = 0; j < y; j++) {
             var td = document.createElement('td');
@@ -78,7 +98,8 @@ function createTable(level) {
             var card = document.createElement('div');
             card.className = "card";
             //TO-DO: IMPROVE GENERATION
-            card.valoare = Math.floor(Math.random() * 10);
+            card.valoare = cardValors[i*(x-1)+j];
+            alert(i*x+j);
             //TO-DO: REMOVE INNER HTML AND ADD A IMG BASED ON VALOARE
             card.innerHTML = card.valoare;
 
