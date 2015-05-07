@@ -28,10 +28,14 @@ function handler(e) {
                 second = null;
             }
             else {
-                first.className = "card";
-                second.className = "card";
-                first = null;
-                second = null;
+                setTimeout(function () {
+                    first.className = "card";
+                    second.className = "card";
+                    first = null;
+                    second = null;
+
+                }, 500);
+
             }
         }
 
@@ -84,22 +88,21 @@ function createTable(level) {
         cardValors.push(i);
         cardValors.push(i);
     }
-    alert(cardValors);
+
     cardValors.shuffle();
-    alert(cardValors);
 
     for (var i = 0; i < x; i++) {
         var row = document.createElement('tr');
-        
+
         table.appendChild(row);
         for (var j = 0; j < y; j++) {
             var td = document.createElement('td');
             row.appendChild(td);
             var card = document.createElement('div');
-            card.className = "card";
+            card.className = "card"
             //TO-DO: IMPROVE GENERATION
-            card.valoare = cardValors[i*(x-1)+j];
-            alert(i*x+j);
+            card.valoare = cardValors[i * y + j];
+            
             //TO-DO: REMOVE INNER HTML AND ADD A IMG BASED ON VALOARE
             card.innerHTML = card.valoare;
 
