@@ -8,7 +8,7 @@ Array.prototype.shuffle = function () {
         this[j] = temp;
     }
 }
-function winGame() {
+function winGame(text) {
     var movingWin = document.createElement('div');
     movingWin.style.position = 'fixed';
     movingWin.style.top = Math.floor(Math.random() * 80) + "%";
@@ -18,7 +18,7 @@ function winGame() {
     movingWin.style.color = 'white';
     movingWin.X = 0;
     movingWin.style.marginLeft = movingWin.X + "px";
-    var winString = 'YOU WON!\nDin ' + incercari + " incercari cu o sansa de " + (incercariCorecte * 100 / incercari).toFixed(2) + "% !";
+    var winString =text!=undefined ? text : 'YOU WON!\nDin ' + incercari + " incercari cu o sansa de " + (incercariCorecte * 100 / incercari).toFixed(2) + "% !";
     movingWin.innerHTML = winString;
     movingWin.lastFrame = +new Date;
     document.body.appendChild(movingWin);
@@ -29,11 +29,11 @@ function winGame() {
         movingWin.style.marginLeft = movingWin.X + "px";
         movingWin.lastFrame = now;
     }, 16, movingWin);
-    setTimeout(function (movingWin) {
+    setTimeout(function (movingWin,text) {
         clearInterval(movingWin.interval);
         document.body.removeChild(movingWin);
-        winGame();
-    }, 5000, movingWin);
+        winGame(text);
+    }, 5000, movingWin,winString);
     //alert('YOU WON!\nDin ' + incercari + " incercari cu o sansa de " + (incercariCorecte * 100 / incercari).toFixed(2) + "% !");
 }
 function handler(e) {
