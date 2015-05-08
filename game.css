@@ -57,6 +57,11 @@
       white 40px /* determines size */
     );
 }
+.card:hover
+{
+    background-blend-mode: screen,normal;
+    
+}
 .selected
 {
     /*background-image: url('images/white.png');*/
