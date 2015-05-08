@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "MySymbols";
+  src: url('webhostinghub-glyphs.ttf') format("truetype");
+}
 #gamebody
 {
     background-color: white;
@@ -23,7 +27,7 @@
 .card
 {
     background-blend-mode: multiply,normal;
-    font-family: 'Helvetica';
+    font-family: 'MySymbols';
     /*background-image: url('images/black.png');*/
     display: table-cell;
     background: gray;
