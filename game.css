@@ -44,7 +44,7 @@
 {
     /*background-image: url('images/white.png');*/
     color:black;
-    background: white;
+    background: white !important;
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
 }
