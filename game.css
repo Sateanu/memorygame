@@ -38,6 +38,7 @@
     vertical-align: middle;
     color:rgba(0,0,0,0);
     border: 2px solid black;
+    border-radius: 10px;
 }
 .selected
 {

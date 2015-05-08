@@ -18,9 +18,9 @@ function winGame(text) {
     movingWin.style.color = 'white';
     movingWin.X = 0;
     movingWin.style.marginLeft = movingWin.X + "px";
-    var winString =text!=undefined ? text : 'YOU WON!\nDin ' + incercari + " incercari cu o sansa de "
-     + (incercariCorecte * 100 / incercari).toFixed(2) + "% ("
-     + ((new Date()-dateStart)/1000)+" s ) !";
+    var winString = text != undefined ? text : 'YOU WON!\nDin ' + incercari + " incercari cu o sansa de "
+        + (incercariCorecte * 100 / incercari).toFixed(2) + "% ("
+        + ((new Date() - dateStart) / 1000) + " s ) !";
     movingWin.innerHTML = winString;
     movingWin.lastFrame = +new Date;
     document.body.appendChild(movingWin);
@@ -31,11 +31,11 @@ function winGame(text) {
         movingWin.style.marginLeft = movingWin.X + "px";
         movingWin.lastFrame = now;
     }, 16, movingWin);
-    setTimeout(function (movingWin,text) {
+    setTimeout(function (movingWin, text) {
         clearInterval(movingWin.interval);
         document.body.removeChild(movingWin);
         winGame(text);
-    }, 5000, movingWin,winString);
+    }, 5000, movingWin, winString);
     //alert('YOU WON!\nDin ' + incercari + " incercari cu o sansa de " + (incercariCorecte * 100 / incercari).toFixed(2) + "% !");
 }
 function handler(e) {
@@ -119,9 +119,9 @@ var dateStart;
 var dateEnd;
 function createTable(level) {
 
-    dateStart=new Date();
-    first=null;
-    second=null;
+    dateStart = new Date();
+    first = null;
+    second = null;
     incercari = 0;
     incercariCorecte = 0;
     if (nivele[level] == null)
@@ -158,6 +158,16 @@ function createTable(level) {
             row.appendChild(td);
             var card = document.createElement('div');
             card.className = "card";
+
+            card.onmouseover = (function (e) {
+                this.oldstyle = this.style;
+                this.style.background = "#999";
+            });
+            card.onmouseleave = (function () {
+                if (this.oldstyle)
+                    this.style = this.oldstyle;
+            });
+
             var cardContainer = document.createElement('div');
             cardContainer.setAttribute("style", "webkit-transform=rotateY(-180deg)");
             cardContainer.style.transform = "rotateY(-180deg)";
@@ -199,5 +209,12 @@ window.onload = (function () {
         menu.appendChild(label);
 
 
+    }
+});
+document.onkeypress = (function (key) {
+    var code = (String.fromCharCode(key.which) || String.fromCharCode(key.keyCode));
+    var level = parseInt(code);
+    if (level) {
+        createTable(level - 1);
     }
 });
