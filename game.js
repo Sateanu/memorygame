@@ -105,7 +105,7 @@ var nivele = [
     { x: 7, y: 7 },
     { x: 8, y: 8 },
     { x: 9, y: 9 },
-    { x: 10, y: 10 },
+    { x: 9, y: 10 },
 ];
 var incercari = 0;
 var incercariCorecte = 0;
@@ -161,12 +161,12 @@ function createTable(level) {
 
             card.onmouseover = (function (e) {
                 this.oldstyle = this.style;
-                this.oldbg=this.style.background;
-                this.style.background = "#999";
+                this.oldbg = this.style.background;
+                this.style.background = "#99C";
             });
             card.onmouseleave = (function () {
                 if (this.oldstyle)
-                    this.style.background=this.oldbg;
+                    this.style.background = this.oldbg;
             });
             var cardContainer = document.createElement('div');
             cardContainer.setAttribute("style", "webkit-transform=rotateY(-180deg)");
@@ -194,6 +194,7 @@ window.onload = (function () {
         b.type = 'button';
         b.value = 'Level ' + (i + 1);
         b.level = i;
+        b.style.margin='2px';
         b.onclick = (function () {
             createTable(this.level);
         });
@@ -201,7 +202,7 @@ window.onload = (function () {
     }
     if (checkBox == null) {
         var label = document.createElement('label');
-        label.innerHTML = "DANK SOUNDS";
+        label.innerHTML = "DANK ";
 
         checkBox = document.createElement('input');
         checkBox.type = 'checkbox';
