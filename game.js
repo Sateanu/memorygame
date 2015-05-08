@@ -158,17 +158,17 @@ function createTable(level) {
             row.appendChild(td);
             var card = document.createElement('div');
             card.className = "card";
-/*
-            card.onmouseover = (function (e) {
-                this.oldstyle = this.style;
-                this.oldbg = this.style.scale;
-                this.style.background = "#99C";
-            });
-            card.onmouseleave = (function () {
-                if (this.oldstyle)
-                    this.style.background = this.oldbg;
-            });
-*/            
+            /*
+                        card.onmouseover = (function (e) {
+                            this.oldstyle = this.style;
+                            this.oldbg = this.style.scale;
+                            this.style.background = "#99C";
+                        });
+                        card.onmouseleave = (function () {
+                            if (this.oldstyle)
+                                this.style.background = this.oldbg;
+                        });
+            */
             var cardContainer = document.createElement('div');
             cardContainer.setAttribute("style", "webkit-transform=rotateY(-180deg)");
             cardContainer.style.transform = "rotateY(-180deg)";
@@ -195,9 +195,18 @@ window.onload = (function () {
         b.type = 'button';
         b.value = 'Level ' + (i + 1);
         b.level = i;
-        b.style.margin='2px';
+        b.style.margin = '2px';
         b.onclick = (function () {
             createTable(this.level);
+        });
+        b.onmouseover = (function (e) {
+            this.oldstyle = this.style;
+            this.oldbg = this.style.background;
+            this.style.background = "#99C";
+        });
+        b.onmouseleave = (function () {
+            if (this.oldstyle)
+                this.style.background = this.oldbg;
         });
         menu.appendChild(b);
     }
