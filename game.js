@@ -161,13 +161,13 @@ function createTable(level) {
 
             card.onmouseover = (function (e) {
                 this.oldstyle = this.style;
+                this.oldbg=this.style.background;
                 this.style.background = "#999";
             });
             card.onmouseleave = (function () {
                 if (this.oldstyle)
-                    this.style = this.oldstyle;
+                    this.style.background=this.oldbg;
             });
-
             var cardContainer = document.createElement('div');
             cardContainer.setAttribute("style", "webkit-transform=rotateY(-180deg)");
             cardContainer.style.transform = "rotateY(-180deg)";
