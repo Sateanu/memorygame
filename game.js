@@ -116,6 +116,8 @@ gamepanel.addEventListener('click', handler, false);
 
 function createTable(level) {
 
+    first=null;
+    second=null;
     incercari = 0;
     incercariCorecte = 0;
     if (nivele[level] == null)
