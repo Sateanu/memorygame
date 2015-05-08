@@ -44,17 +44,17 @@
     background-image: 
     repeating-linear-gradient(
       45deg,
-      red,
-      red 10px,
-      white 10px,
-      white 20px /* determines size */
+      gray,
+      gray 20px,
+      white 20px,
+      white 40px /* determines size */
     ),
      repeating-linear-gradient(
       135deg,
-      blue,
-      blue 10px,
-      white 10px,
-      white 20px /* determines size */
+      gray,
+      gray 20px,
+      white 20px,
+      white 40px /* determines size */
     );
 }
 .selected
@@ -67,10 +67,8 @@
 }
 .used
 {
-    background-blend-mode: multiply,normal;
-    color: transparent;
-    opacity: 0.1;   
-   
+    color: black;
+    opacity: 0.1;  
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
 }
