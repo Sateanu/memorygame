@@ -18,7 +18,9 @@ function winGame(text) {
     movingWin.style.color = 'white';
     movingWin.X = 0;
     movingWin.style.marginLeft = movingWin.X + "px";
-    var winString =text!=undefined ? text : 'YOU WON!\nDin ' + incercari + " incercari cu o sansa de " + (incercariCorecte * 100 / incercari).toFixed(2) + "% !";
+    var winString =text!=undefined ? text : 'YOU WON!\nDin ' + incercari + " incercari cu o sansa de "
+     + (incercariCorecte * 100 / incercari).toFixed(2) + "% ("
+     + ((new Date()-dateStart)/1000)+" s ) !";
     movingWin.innerHTML = winString;
     movingWin.lastFrame = +new Date;
     document.body.appendChild(movingWin);
@@ -113,9 +115,11 @@ var gamepanel = document.getElementById('gamebody');
 var perechiramase = 0;
 var checkBox = null;
 gamepanel.addEventListener('click', handler, false);
-
+var dateStart;
+var dateEnd;
 function createTable(level) {
 
+    dateStart=new Date();
     first=null;
     second=null;
     incercari = 0;
