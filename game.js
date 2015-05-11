@@ -47,6 +47,7 @@ function handler(e) {
             //first.valoare = target.innerHTML;
             first.className = "card selected";
             if (checkBox.checked) {
+                document.getElementById('dank_hit').currentTime=0;
                 document.getElementById('dank_hit').play();
             }
         }
@@ -54,12 +55,14 @@ function handler(e) {
             second = target;
             incercari++;
             if (checkBox.checked) {
+                document.getElementById('dank_hit').currentTime=0;
                 document.getElementById('dank_hit').play();
             }
             //second.valoare = target.innerHTML;
             second.className = "card selected";
             if (first.valoare == second.valoare) {
                 if (checkBox.checked) {
+                    document.getElementById('dank_score').currentTime=0;
                     document.getElementById('dank_score').play();
                 }
                 incercariCorecte++;
@@ -70,6 +73,7 @@ function handler(e) {
                 perechiramase--;
                 if (perechiramase == 0) {
                     if (checkBox.checked) {
+                        document.getElementById('dank_win').currentTime=0;
                         document.getElementById('dank_win').play();
                     }
                     winGame();
@@ -82,6 +86,7 @@ function handler(e) {
                     first = null;
                     second = null;
                     if (checkBox.checked) {
+                        document.getElementById('dank_miss').currentTime=0;
                         document.getElementById('dank_miss').play();
                     }
                 }, 500);
